@@ -1,5 +1,5 @@
 # SW Expert Academy
-  > Branched : 2020-2 알고리즘
+  > 2020 - 2학기 Algorithm
 
 ## 링크
   https://swexpertacademy.com/main/main.do
