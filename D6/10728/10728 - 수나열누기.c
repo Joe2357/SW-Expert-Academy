@@ -1,51 +1,56 @@
 #include <stdio.h>
+#define INF 1000000001
 #define MAX_INDEX 300000
 
-typedef struct Node
-{
-	int value;
-	int index;
-} ND;
+int maxArray[MAX_INDEX], min,
+testcase, loop_testcase, n, i, j, pre, cur, result, branch,
+start, end, mid;
 
-int arr[MAX_INDEX], length;
-ND asc[MAX_INDEX], desc[MAX_INDEX];
-int result;
+int main() {
+	scanf("%d", &testcase);
+	for (loop_testcase = 1; loop_testcase <= testcase; loop_testcase++) {
+		result = 0, branch = 0, pre = INF;
+		min = INF;
+		scanf("%d", &n);
 
-int asc_cmp(ND *a, ND *b)
-{
-	if (a->value != b->value)
-		return a->value > b->value;
-	else
-		return a->index > b->index;
-}
+		for (i = 0; i < n; i++) {
+			scanf("%d", &cur);
 
-int desc_cmp(ND *a, ND *b)
-{
-	if (a->value != b->value)
-		return a->value < b->value;
-	else
-		return a->index < b->index;
-}
+			if (cur < pre) {
+				// 브랜치 생성
+				if (min > cur) {
+					result += branch;
+					branch = 0;
+					min = cur;
+				}
+				maxArray[branch++] = cur;
+			}
+			else if (cur > pre) {
+				/* 이진탐색 */
 
-int main()
-{
-	int t;
-	scanf("%d", &t);
-	for (int i = 1; i <= t; i++)
-	{
-		result = 0;
-		scanf("%d", &length);
-		for (int a = 0; a < length; a++)
-		{
-			scanf("%d", arr + a);
-			asc[i] = (ND){arr[a], i + 1};
-			desc[i] = (ND){arr[a], i + 1};
+				start = branch, end = 0;
+
+				while (end < start) {
+					mid = (start + end) / 2;
+					if (maxArray[mid] == cur) {
+						start = mid;
+						break;
+					}
+					else if (maxArray[mid] < cur) {
+						start = mid;
+					}
+					else {
+						end = mid + 1;
+					}
+				}
+
+				maxArray[start] = cur;
+				branch = start + 1;
+			}
+
+			pre = cur;
 		}
-
-		qsort(asc, length, sizeof(ND), asc_cmp);
-		qsort(desc, length, sizeof(ND), desc_cmp);
-
-		printf("#%d %d\n", i, result);
+		printf("#%d %d\n", loop_testcase, result + branch);
 	}
 
 	return 0;
