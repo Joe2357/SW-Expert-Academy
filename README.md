@@ -2,7 +2,7 @@
   > 2020 - 2학기 Algorithm
 
 ## 링크
-  [사이트 바로가기](https://swexpertacademy.com/main/main.do) "https://swexpertacademy.com/main/main.do"
+  [사이트 바로가기](https://swexpertacademy.com/main/main.do) "https://swexpertacademy.com/main/main.do"  
   [풀이 소스코드 바로가기](https://github.com/Joe2357/SW-Expert-Academy) "https://github.com/Joe2357/SW-Expert-Academy"
 
 ## Master
